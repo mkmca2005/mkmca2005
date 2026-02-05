@@ -1,0 +1,54 @@
+<UserControl x:Class="MapperStudio.Views.SchemaPreviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:MapperStudio.Models">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type models:SchemaNode}" ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Name}" />
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Schema Preview" Style="{StaticResource HeadingTextStyle}" />
+            <TextBlock Text="Review source and target structures" Style="{StaticResource SubtleTextStyle}" />
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+            <Border Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Source Schema" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,0,12" />
+                    <TreeView ItemsSource="{Binding SourceSchema}" />
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="12,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Target Schema" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,0,12" />
+                    <TreeView ItemsSource="{Binding TargetSchema}" />
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="12,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Field Metadata" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,0,12" />
+                    <ListView ItemsSource="{Binding SelectedFieldMetadata}" BorderThickness="0" Background="{StaticResource SurfaceBrush}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,12">
+                                    <TextBlock Text="{Binding Key}" Style="{StaticResource SubtleTextStyle}" />
+                                    <TextBlock Text="{Binding Value}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
