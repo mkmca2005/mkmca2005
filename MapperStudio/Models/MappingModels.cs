@@ -4,10 +4,12 @@ namespace MapperStudio.Models;
 
 public sealed record MappingSummary(
     string Title,
+    string Description,
     string RecordCount,
     string SourceSystem,
     string SourceType,
     string TargetSystem,
+    string TargetType,
     string Entity,
     string Status,
     string Version,
