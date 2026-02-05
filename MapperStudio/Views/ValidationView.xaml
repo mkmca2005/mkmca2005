@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
             <Border Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,12,0">
                 <StackPanel>
-                    <TextBlock Text="Errors & Warnings" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,0,12" />
+                    <TextBlock Text="Errors &amp; Warnings" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,0,12" />
                     <ItemsControl ItemsSource="{Binding ValidationItems}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

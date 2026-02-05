@@ -5,3 +5,4 @@
 /.vs
 /MapperStudio/obj
 *.vsidx
+/MapperStudio/bin/Debug/net8.0-windows

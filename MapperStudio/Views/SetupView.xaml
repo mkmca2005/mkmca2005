@@ -88,7 +88,7 @@
                             <TextBlock Text="version" Style="{StaticResource SubtleTextStyle}" Margin="12,0,0,0" />
                         </StackPanel>
                     </Border>
-                    <Button Content="Call API & Load Schema" Style="{StaticResource PrimaryButtonStyle}" Margin="0,16,0,0" Command="{Binding LoadSourceSchemaCommand}" />
+                    <Button Content="Call API &amp; Load Schema" Style="{StaticResource PrimaryButtonStyle}" Margin="0,16,0,0" Command="{Binding LoadSourceSchemaCommand}" />
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" Style="{StaticResource CardBorderStyle}" Margin="12,0,0,0">
