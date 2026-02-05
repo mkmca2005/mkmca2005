@@ -42,6 +42,27 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="TargetTypePillStyle" TargetType="Border" BasedOn="{StaticResource TagPillStyle}">
+            <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SourceType}" Value="SQL">
+                    <Setter Property="Background" Value="{StaticResource TagBlueBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource TagBlueBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SourceType}" Value="REST API">
+                    <Setter Property="Background" Value="{StaticResource TagPurpleBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource TagPurpleBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SourceType}" Value="CSV">
+                    <Setter Property="Background" Value="{StaticResource TagOrangeBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource TagOrangeBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding SourceType}" Value="Dataverse">
+                    <Setter Property="Background" Value="{StaticResource TagTealBrush}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource TagTealBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -54,28 +75,24 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <StackPanel>
-                <Image Source="/Resources/Images/MapperStudio.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 -20 0 0" Height="75" />
 
-                <TextBlock Text="Manage data integration mappings across systems" Style="{StaticResource PageSubtitleTextStyle}" Margin="0,6,0,0" />
-            </StackPanel>
-            <Button Grid.Column="1" Height="35" Width="150" VerticalAlignment="Bottom"
-                    Content="Create Mapping"
-                    Style="{StaticResource PrimaryButtonStyle}"
-                    Command="{Binding CreateNewMappingCommand}"
-                    Padding="16,10"
-                    Margin="12,4,0,0" />
+
         </Grid>
         <Border Grid.Row="1" Margin="0,20,0,12">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="140" />
+                    <ColumnDefinition Width="170" />
                 </Grid.ColumnDefinitions>
                 <TextBox Style="{StaticResource WatermarkTextBoxStyle}"
                          Tag="Search mappings..."
                          Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
-                <Button Grid.Column="1" Content="Filters" Style="{StaticResource GhostButtonStyle}" Margin="12,0,0,0" />
+                <Button Grid.Column="1" Height="35" Width="150" VerticalAlignment="Bottom"
+        Content="Create Mapping"
+        Style="{StaticResource PrimaryButtonStyle}"
+        Command="{Binding CreateNewMappingCommand}"
+        Padding="15,10"
+        Margin="12,4,0,0" />
             </Grid>
         </Border>
         <Border Grid.Row="2" >
@@ -84,53 +101,87 @@
                       Style="{StaticResource DashboardDataGridStyle}"
                       HeadersVisibility="Column">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="" Width="40">
+                    <DataGridTemplateColumn Header="" Width="60">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox VerticalAlignment="Center" />
+                                <CheckBox VerticalAlignment="Center" Margin="15" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Name" Width="220">
+                    <DataGridTemplateColumn Header="Name" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding RecordCount}" Style="{StaticResource SubtleTextStyle}" />
+                                <StackPanel Margin="0 10 0 0" >
+                                    <TextBlock Text="{Binding Title}" FontWeight="Bold"  />
+                                    <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow" Style="{StaticResource SubtleTextStyle}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Source System" Width="180">
+                    <DataGridTemplateColumn Header="Source System" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10" >
                                     <TextBlock Text="{Binding SourceSystem}" />
-                                    <Border Style="{StaticResource SourceTypePillStyle}" Margin="0,6,0,0">
-                                        <TextBlock Text="{Binding SourceType}" Foreground="{StaticResource AppForegroundBrush}" />
+                                    <Border Width="80" Height="20" Margin="0 5 0 0" Style="{StaticResource SourceTypePillStyle}" >
+                                        <TextBlock  Text="{Binding SourceType}" FontSize="10" Foreground="{StaticResource AppForegroundBrush}" />
                                     </Border>
+                                    
+
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Target System" Binding="{Binding TargetSystem}" Width="160" />
-                    <DataGridTextColumn Header="Entity" Binding="{Binding Entity}" Width="120" />
+                    <DataGridTemplateColumn Header="Target System" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="10" >
+                                    <Border Width="50" Height="10" Style="{StaticResource TargetTypePillStyle}" >
+                                        <TextBlock Text="{Binding TargetType}" Foreground="{StaticResource AppForegroundBrush}" />
+                                    </Border>
+                                    <TextBlock Text="{Binding TargetSytem}" />
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="Target System" Binding="{Binding TargetSystem}" Width="160" />-->
+                    <DataGridTemplateColumn Header="Entity" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" HorizontalAlignment="Center" >
+                                    <TextBlock Text="{Binding Entity}" />
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Status" Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource StatusPillTemplate}">
-                                    <TextBlock Text="{Binding Status}" Foreground="{StaticResource AppBackgroundBrush}" />
-                                </Border>
+                                <StackPanel Margin="10" HorizontalAlignment="Center" >
+                                    <TextBlock Text="{Binding Status}" />
+                                </StackPanel>
+
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Version" Binding="{Binding Version}" Width="90" />
+                    <DataGridTemplateColumn Header="Version" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="10" HorizontalAlignment="Center" >
+                                    <TextBlock Text="{Binding Version}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="Last Modified" Width="170">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding UpdatedOn}" />
+                                <StackPanel Margin="10" >
+
                                     <TextBlock Text="{Binding UpdatedBy}" Style="{StaticResource SubtleTextStyle}" />
+                                    <TextBlock Text="{Binding UpdatedOn}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -13,8 +13,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Mapping Studio" Style="{StaticResource SectionTitleTextStyle}" Margin="0,0,16,0" />
-                <TextBlock Text="Setup" Style="{StaticResource SubtleTextStyle}" VerticalAlignment="Center" />
+                <TextBlock Text="Setup" Style="{StaticResource SectionTitleTextStyle}" VerticalAlignment="Center" />
                 <TextBlock Text=">" Style="{StaticResource SubtleTextStyle}" Margin="8,0" VerticalAlignment="Center" />
                 <TextBlock Text="Map Fields" Style="{StaticResource SubtleTextStyle}" VerticalAlignment="Center" />
             </StackPanel>
@@ -28,23 +27,23 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="1.2*" />
+                    <!--<ColumnDefinition Width="1.2*" />-->
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Margin="0,0,12,0">
                     <TextBlock Text="Mapping Title" Style="{StaticResource InputLabelStyle}" />
-                    <TextBox Style="{StaticResource BaseTextBoxStyle}" Text="{Binding MappingTitle, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource WatermarkTextBoxStyle}" Tag="Enter mapping title here" Text="{Binding MappingTitle, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
-                <StackPanel Grid.Column="1" Margin="12,0">
+                <!--<StackPanel Grid.Column="1" Margin="12,0">
                     <TextBlock Text="Direction" Style="{StaticResource InputLabelStyle}" />
                     <StackPanel Orientation="Horizontal">
                         <ToggleButton Content="Inbound" Style="{StaticResource SegmentButtonStyle}" IsChecked="True" Margin="0,0,8,0" />
                         <ToggleButton Content="Outbound" Style="{StaticResource SegmentButtonStyle}" />
                     </StackPanel>
-                </StackPanel>
+                </StackPanel>-->
                 <StackPanel Grid.Column="2" Margin="12,0,0,0">
                     <TextBlock Text="Description (Optional)" Style="{StaticResource InputLabelStyle}" />
-                    <TextBox Style="{StaticResource WatermarkTextBoxStyle}" Tag="Internal tracking description..." Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Style="{StaticResource WatermarkTextBoxStyle}" Tag="Description..." Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -64,7 +63,7 @@
                     </StackPanel>
                     <TextBlock Text="Connector Type" Style="{StaticResource InputLabelStyle}" />
                     <ComboBox ItemsSource="{Binding SystemTypes}" SelectedItem="{Binding SelectedSourceSystem}" Margin="0,0,0,12" />
-                    <TextBlock Text="Endpoint URL" Style="{StaticResource InputLabelStyle}" />
+                    <TextBlock  Text="Endpoint URL" Style="{StaticResource InputLabelStyle}" />
                     <TextBox Style="{StaticResource BaseTextBoxStyle}" Text="https://api.enterprise.com/v1/users/schema" Margin="0,0,0,12" />
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,6">
                         <TextBlock Text="Authentication" Style="{StaticResource InputLabelStyle}" />

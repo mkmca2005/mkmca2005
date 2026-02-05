@@ -5,15 +5,41 @@
         Background="{StaticResource AppBackgroundBrush}"
         FontFamily="{StaticResource AppFontFamily}"
         Foreground="{StaticResource AppForegroundBrush}"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <StaticResource ResourceKey="MainViewModel" />
     </Window.DataContext>
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="10" CaptionHeight="0"></WindowChrome>
+    </WindowChrome.WindowChrome>
     <Grid>
-        <Grid.ColumnDefinitions>           
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-       
-        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="24" />
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="73">                
+            </RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200">
+                    
+                </ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <StackPanel MouseLeftButtonDown="imgAppLogo_MouseLeftButtonDown" HorizontalAlignment="Left" Width="800">
+            <Image Name="imgAppLogo" Source="/Resources/Images/MapperStudio.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 0 0 0" Height="75" />
+            <TextBlock Text="Manage data integration mappings across systems" Style="{StaticResource PageSubtitleTextStyle}" Margin="0,6,0,0" />
+
+        </StackPanel>
+
+        <StackPanel Width="130" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btnClose" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnClose_Click_1">-</Button>
+            <Button Name="btnMaximize" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnMaximize_Click">&#x1F5D6;</Button>
+            <Button Name="btnMinimize" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnClose_Click">X</Button>
+        </StackPanel>
+        
+        <ContentControl Grid.Row="2" Content="{Binding CurrentView}" Margin="20 10 20 20" />
     </Grid>
 </Window>

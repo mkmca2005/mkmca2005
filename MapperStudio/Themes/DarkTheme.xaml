@@ -249,7 +249,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style TargetType="ComboBox">
+        <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="8,6" />
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+    </Style>
     <Style x:Key="WatermarkTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
         <Setter Property="Template">
             <Setter.Value>
@@ -306,14 +313,7 @@
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
     </Style>
 
-    <Style TargetType="ComboBox">
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="8,6" />
-        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-    </Style>
+    
 
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
@@ -329,7 +329,7 @@
     </Style>
 
     <Style x:Key="DashboardDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-        <Setter Property="RowHeight" Value="60" />
+        <Setter Property="RowHeight" Value="70" />
         <Setter Property="HeadersVisibility" Value="Column" />
     </Style>
 
