@@ -10,13 +10,30 @@
         <StaticResource ResourceKey="MainViewModel" />
     </Window.DataContext>
     <Grid>
-        <Border Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Background="{StaticResource SurfaceBrush}" Grid.Column="0" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
             <DockPanel>
+                <StackPanel Margin="20,24,20,16">
+                    <TextBlock Text="Mapper Studio" Style="{StaticResource HeadingTextStyle}" />
+                    <TextBlock Text="Mapping Authoring" Style="{StaticResource SubtleTextStyle}" Margin="0,6,0,0" />
+                </StackPanel>
+                <StackPanel Margin="12,8,12,12">
+                    <Button Content="Dashboard" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateDashboardCommand}" />
+                    <Button Content="Setup" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateSetupCommand}" />
+                    <Button Content="Schema Preview" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateSchemaPreviewCommand}" />
+                    <Button Content="Mapping Editor" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateMappingEditorCommand}" />
+                    <Button Content="Strategy Config" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateStrategyConfigCommand}" />
+                    <Button Content="Validation" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateValidationCommand}" />
+                    <Button Content="Export" Style="{StaticResource NavButtonStyle}" Command="{Binding NavigateExportCommand}" />
+                </StackPanel>
                 <StackPanel Margin="20,0,20,20" VerticalAlignment="Bottom">
                     <TextBlock Text="v1.0" Style="{StaticResource SubtleTextStyle}" />
                 </StackPanel>
             </DockPanel>
         </Border>
-        <ContentControl Content="{Binding CurrentView}" Margin="24" />
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" Margin="24" />
     </Grid>
 </Window>
