@@ -9,7 +9,8 @@ public sealed class MainViewModel : ViewModelBase
     public MainViewModel()
     {
         DashboardViewModel = new DashboardViewModel(this);
-        SetupViewModel = new SetupViewModel(this);
+        // Provide a simple IConnectionService implementation
+        SetupViewModel = new SetupViewModel(new Services.DummyConnectionService());
         SchemaPreviewViewModel = new SchemaPreviewViewModel();
         MappingEditorViewModel = new MappingEditorViewModel(this);
         StrategyConfigViewModel = new StrategyConfigViewModel();

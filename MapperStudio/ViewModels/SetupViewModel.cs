@@ -1,177 +1,328 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using MapperStudio.Models;
 
 namespace MapperStudio.ViewModels;
 
-public sealed class SetupViewModel : ViewModelBase
+public partial class SetupViewModel : ViewModelBase
 {
-    private readonly MainViewModel _mainViewModel;
-    private string _mappingTitle = string.Empty;
-    private string _description = string.Empty;
-    private string _selectedSourceSystem;
-    private string _selectedTargetSystem;
-    private string _selectedEntity;
-    private bool _isSourceSchemaLoaded;
-    private bool _isTargetSchemaLoaded;
-    private string _sourceSchemaStatus = "Not loaded";
-    private string _targetSchemaStatus = "Not loaded";
-    private readonly RelayCommand _nextCommand;
+    private readonly IConnectionService _connectionService;
 
-    public SetupViewModel(MainViewModel mainViewModel)
-    {
-        _mainViewModel = mainViewModel;
-        SystemTypes = new ObservableCollection<string> { "SQL", "REST", "CSV" };
-        _selectedSourceSystem = SystemTypes[0];
-        _selectedTargetSystem = SystemTypes[1];
-        EntityOptions = new ObservableCollection<string> { "cr_contact_profile", "account", "contact" };
-        _selectedEntity = EntityOptions[0];
-        TargetColumns = new ObservableCollection<TargetColumn>
-        {
-            new("ExternalId", "Guid", "*"),
-            new("DisplayName", "String(250)", ""),
-            new("PrimaryEmail", "String(100)", ""),
-            new("LastModified", "DateTime", ""),
-            new("SystemRole", "Choice", ""),
-            new("CreatedBy", "Lookup", "")
-        };
+    [ObservableProperty]
+    private string mappingTitle = string.Empty;
 
-        LoadSourceSchemaCommand = new RelayCommand(_ => LoadSourceSchema());
-        LoadTargetSchemaCommand = new RelayCommand(_ => LoadTargetSchema());
-        _nextCommand = new RelayCommand(_ => _mainViewModel.CurrentView = _mainViewModel.SchemaPreviewViewModel, _ => CanProceed());
-        NextCommand = _nextCommand;
-    }
+    [ObservableProperty]
+    private string description = string.Empty;
 
-    public ObservableCollection<string> SystemTypes { get; }
+    [ObservableProperty]
+    private ObservableCollection<string> systemTypes = new();
 
-    public ObservableCollection<string> EntityOptions { get; }
+    [ObservableProperty]
+    private string? selectedSourceSystem;
 
-    public ObservableCollection<TargetColumn> TargetColumns { get; }
+    [ObservableProperty]
+    private string? selectedTargetSystem;
 
-    public string MappingTitle
-    {
-        get => _mappingTitle;
-        set
-        {
-            if (_mappingTitle == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private ObservableCollection<EntityDefinition> entityOptions = new();
 
-            _mappingTitle = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private EntityDefinition? selectedEntity;
 
-    public string Description
-    {
-        get => _description;
-        set
-        {
-            if (_description == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private ObservableCollection<ColumnDefinition> targetColumns = new();
 
-            _description = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private bool isSourceSystemSelected;
 
-    public string SelectedSourceSystem
-    {
-        get => _selectedSourceSystem;
-        set
-        {
-            if (_selectedSourceSystem == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private bool isLoadSourceSchemaEnabled;
 
-            _selectedSourceSystem = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private bool isLoadTargetSchemaEnabled;
 
-    public string SelectedTargetSystem
-    {
-        get => _selectedTargetSystem;
-        set
-        {
-            if (_selectedTargetSystem == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private bool isTargetSystemSelected;
 
-            _selectedTargetSystem = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private string sourceStatusTag = "ONLINE";
 
-    public string SelectedEntity
-    {
-        get => _selectedEntity;
-        set
-        {
-            if (_selectedEntity == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private string sourceEndpointUrl = "https://api.enterprise.com/v1/users/schema";
 
-            _selectedEntity = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private string sourceAuthenticationHeaders = string.Empty;
 
-    public string SourceSchemaStatus
-    {
-        get => _sourceSchemaStatus;
-        private set
-        {
-            if (_sourceSchemaStatus == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private ObservableCollection<string> sourceSchemaFields = new();
 
-            _sourceSchemaStatus = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private ObservableCollection<string> targetSchemaFields = new();
 
-    public string TargetSchemaStatus
-    {
-        get => _targetSchemaStatus;
-        private set
-        {
-            if (_targetSchemaStatus == value)
-            {
-                return;
-            }
+    [ObservableProperty]
+    private string targetEndpointUrl = string.Empty;
 
-            _targetSchemaStatus = value;
-            OnPropertyChanged();
-        }
-    }
+    [ObservableProperty]
+    private string targetAuthenticationHeaders = string.Empty;
 
-    public ICommand LoadSourceSchemaCommand { get; }
-
-    public ICommand LoadTargetSchemaCommand { get; }
+    [ObservableProperty]
+    private string targetColumnCount = "0 Columns";
 
     public ICommand NextCommand { get; }
+    public ICommand LoadSourceSchemaCommand { get; }
+    public ICommand LoadTargetSchemaCommand { get; }
 
-    private void LoadSourceSchema()
+    public SetupViewModel(IConnectionService connectionService)
     {
-        _isSourceSchemaLoaded = true;
-        SourceSchemaStatus = "Loaded sample schema";
-        _nextCommand.RaiseCanExecuteChanged();
+        _connectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
+
+        NextCommand = new RelayCommand(_ => OnNext(), _ => CanNext());
+        LoadSourceSchemaCommand = new RelayCommand(_ => OnLoadSourceSchema(), _ => CanLoadSourceSchema());
+        LoadTargetSchemaCommand = new RelayCommand(_ => OnLoadTargetSchema(), _ => CanLoadTargetSchema());
+
+        InitializeSystemTypes();
     }
 
-    private void LoadTargetSchema()
+    private void HandleTargetSystemSelection(string connectionType)
     {
-        _isTargetSchemaLoaded = true;
-        TargetSchemaStatus = "Loaded sample schema";
-        _nextCommand.RaiseCanExecuteChanged();
+        // Configure endpoint based on connection type
+        TargetEndpointUrl = connectionType switch
+        {
+            "REST API" => "https://api.enterprise.com/v1/target/entities",
+            "SOAP" => "https://api.enterprise.com/soap/target?wsdl",
+            "Database" => "Server=db.target.com;Database=TargetDB",
+            "CSV" => "C:\\data\\target-file.csv",
+            "Excel" => "C:\\data\\target-file.xlsx",
+            _ => string.Empty
+        };
+
+        // Configure authentication headers based on connection type
+        TargetAuthenticationHeaders = connectionType switch
+        {
+            "REST API" => "Bearer token_target_12ab...",
+            "SOAP" => "Username: target_admin\nPassword: ****",
+            "Database" => "User ID: target_sa\nPassword: ****",
+            "CSV" => "N/A",
+            "Excel" => "N/A",
+            _ => string.Empty
+        };
     }
 
-    private bool CanProceed() => _isSourceSchemaLoaded && _isTargetSchemaLoaded;
+    private void InitializeSystemTypes()
+    {
+        SystemTypes = new ObservableCollection<string>
+        {
+            "REST API",
+            "SOAP",
+            "Database",
+            "CSV",
+            "Excel"
+        };
+    }
+
+    // Called when the generated MappingTitle property changes
+    partial void OnMappingTitleChanged(string oldValue, string newValue)
+    {
+        ((RelayCommand)NextCommand).RaiseCanExecuteChanged();
+    }
+
+    // Called when SelectedSourceSystem changes (generated by toolkit)
+    partial void OnSelectedSourceSystemChanged(string? oldValue, string? newValue)
+    {
+        IsSourceSystemSelected = !string.IsNullOrEmpty(newValue);
+        IsLoadSourceSchemaEnabled = IsSourceSystemSelected;
+
+        if (IsSourceSystemSelected)
+        {
+            HandleSourceSystemSelection(newValue!);
+        }
+        else
+        {
+            ClearSourceConfiguration();
+        }
+
+        ((RelayCommand)LoadSourceSchemaCommand).RaiseCanExecuteChanged();
+        ((RelayCommand)NextCommand).RaiseCanExecuteChanged();
+    }
+
+    // Called when SelectedTargetSystem changes (generated by toolkit)
+    partial void OnSelectedTargetSystemChanged(string? oldValue, string? newValue)
+    {
+        IsLoadTargetSchemaEnabled = !string.IsNullOrEmpty(newValue);
+        IsTargetSystemSelected = !string.IsNullOrEmpty(newValue);
+        if (IsTargetSystemSelected)
+        {
+            HandleTargetSystemSelection(newValue!);
+        }
+        else
+        {
+            ClearTargetConfiguration();
+        }
+        ((RelayCommand)LoadTargetSchemaCommand).RaiseCanExecuteChanged();
+        ((RelayCommand)NextCommand).RaiseCanExecuteChanged();
+    }
+
+    // Called when SelectedEntity changes (generated by toolkit)
+    partial void OnSelectedEntityChanged(EntityDefinition? oldValue, EntityDefinition? newValue)
+    {
+        ((RelayCommand)LoadTargetSchemaCommand).RaiseCanExecuteChanged();
+        ((RelayCommand)NextCommand).RaiseCanExecuteChanged();
+    }
+
+    private void HandleSourceSystemSelection(string connectionType)
+    {
+        SourceStatusTag = connectionType switch
+        {
+            "REST API" => "ONLINE",
+            "SOAP" => "ONLINE",
+            "Database" => "DATABASE",
+            "CSV" => "FILE",
+            "Excel" => "FILE",
+            _ => "ONLINE"
+        };
+
+        // Configure endpoint based on connection type
+        SourceEndpointUrl = connectionType switch
+        {
+            "REST API" => "https://api.enterprise.com/v1/users/schema",
+            "SOAP" => "https://api.enterprise.com/soap/service?wsdl",
+            "Database" => "Server=db.example.com;Database=YourDB",
+            "CSV" => "C:\\data\\source-file.csv",
+            "Excel" => "C:\\data\\source-file.xlsx",
+            _ => string.Empty
+        };
+
+        // Configure authentication headers based on connection type
+        SourceAuthenticationHeaders = connectionType switch
+        {
+            "REST API" => "Bearer token_live_823hdj...\nX-Tenant-ID: US-PROD-01",
+            "SOAP" => "Username: admin\nPassword: ****",
+            "Database" => "User ID: sa\nPassword: ****",
+            "CSV" => "N/A",
+            "Excel" => "N/A",
+            _ => string.Empty
+        };
+    }
+
+    private void ClearSourceConfiguration()
+    {
+        SourceEndpointUrl = string.Empty;
+        SourceAuthenticationHeaders = string.Empty;
+        SourceSchemaFields.Clear();
+        IsLoadSourceSchemaEnabled = false;
+    }
+
+    private void ClearTargetConfiguration()
+    {
+        TargetEndpointUrl = string.Empty;
+        TargetAuthenticationHeaders = string.Empty;
+        TargetSchemaFields.Clear();
+        IsLoadTargetSchemaEnabled = false;
+    }
+
+    private void OnLoadSourceSchema()
+    {
+        if (string.IsNullOrEmpty(SelectedSourceSystem) || string.IsNullOrEmpty(SourceEndpointUrl))
+        {
+            return;
+        }
+
+        try
+        {
+            // Call your connection service to load schema
+            var schema = _connectionService.LoadSourceSchema(SelectedSourceSystem, SourceEndpointUrl) ?? new List<string>();
+
+            SourceSchemaFields.Clear();
+            foreach (var field in schema)
+            {
+                SourceSchemaFields.Add(field);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle error
+            System.Diagnostics.Debug.WriteLine($"Error loading source schema: {ex.Message}");
+        }
+    }
+
+    private bool CanLoadSourceSchema()
+    {
+        return IsSourceSystemSelected && !string.IsNullOrEmpty(SourceEndpointUrl);
+    }
+
+    private void OnLoadTargetSchema()
+    {
+        if (string.IsNullOrEmpty(SelectedTargetSystem) || SelectedEntity == null)
+        {
+            return;
+        }
+
+        try
+        {
+            // Call your connection service to load target schema
+            var columns = _connectionService.LoadTargetSchema(SelectedTargetSystem, SelectedEntity.Name) ?? new List<ColumnDefinition>();
+
+            TargetColumns.Clear();
+            foreach (var column in columns)
+            {
+                TargetColumns.Add(column);
+            }
+
+            TargetColumnCount = $"{TargetColumns.Count} Columns Detected";
+            ((RelayCommand)NextCommand).RaiseCanExecuteChanged();
+        }
+        catch (Exception ex)
+        {
+            // Handle error
+            System.Diagnostics.Debug.WriteLine($"Error loading target schema: {ex.Message}");
+        }
+    }
+
+    private bool CanLoadTargetSchema()
+    {
+        return !string.IsNullOrEmpty(SelectedTargetSystem) && SelectedEntity != null;
+    }
+
+    private void OnNext()
+    {
+        if (string.IsNullOrEmpty(MappingTitle) ||
+            string.IsNullOrEmpty(SelectedSourceSystem) ||
+            string.IsNullOrEmpty(SelectedTargetSystem) ||
+            SelectedEntity == null)
+        {
+            return;
+        }
+
+        // Navigate to next step or trigger navigation command
+        System.Diagnostics.Debug.WriteLine($"Proceeding with mapping: {MappingTitle}");
+    }
+
+    private bool CanNext()
+    {
+        return !string.IsNullOrEmpty(MappingTitle) &&
+               !string.IsNullOrEmpty(SelectedSourceSystem) &&
+               !string.IsNullOrEmpty(SelectedTargetSystem) &&
+               SelectedEntity != null;
+    }
+}
+
+public interface IConnectionService
+{
+    List<string>? LoadSourceSchema(string connectionType, string endpoint);
+    List<ColumnDefinition>? LoadTargetSchema(string systemType, string entityName);
+}
+
+public class EntityDefinition
+{
+    public string Name { get; set; } = string.Empty;
+    public string DisplayName { get; set; } = string.Empty;
+}
+
+public class ColumnDefinition
+{
+    public string Name { get; set; } = string.Empty;
+    public string DataType { get; set; } = string.Empty;
+    public bool Required { get; set; }
 }

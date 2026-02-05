@@ -3,27 +3,36 @@
   "WorkspaceRootPath": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mgupt\\AppData\\Local\\Temp\\.vsdbgsrc\\aad6be2495d0a786b94b3514a5b6903407fe2d6a75ad7e505df6a9d895927867\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\views\\setupview.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:views\\setupview.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\views\\setupview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:views\\setupview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\views\\setupview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:views\\setupview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:viewmodels\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\viewmodels\\setupviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:viewmodels\\setupviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\themes\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:themes\\lighttheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:themes\\darktheme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|c:\\work\\samples\\mkmca2005\\mapperstudio\\services\\dummyconnectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5ABA7C0-780A-4EC4-1045-38515E5874D3}|MapperStudio.csproj|solutionrelative:services\\dummyconnectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 16,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -85,105 +94,103 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SetupView.xaml.cs",
-              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\SetupView.xaml.cs",
-              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml.cs",
-              "RelativeToolTip": "Views\\SetupView.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T17:49:54.817Z",
+              "WhenOpened": "2026-02-05T20:22:53.337Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "DashboardViewModel.cs",
               "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\DashboardViewModel.cs",
               "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\DashboardViewModel.cs",
               "RelativeToolTip": "ViewModels\\DashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAC1AAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAhwBMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T17:16:16.849Z",
+              "WhenOpened": "2026-02-05T20:17:17.07Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedHeight": 384,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "XamlReader.cs",
-              "DocumentMoniker": "C:\\Users\\mgupt\\AppData\\Local\\Temp\\.vsdbgsrc\\aad6be2495d0a786b94b3514a5b6903407fe2d6a75ad7e505df6a9d895927867\\XamlReader.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\mgupt\\AppData\\Local\\Temp\\.vsdbgsrc\\aad6be2495d0a786b94b3514a5b6903407fe2d6a75ad7e505df6a9d895927867\\XamlReader.cs",
-              "ToolTip": "C:\\Users\\mgupt\\AppData\\Local\\Temp\\.vsdbgsrc\\aad6be2495d0a786b94b3514a5b6903407fe2d6a75ad7e505df6a9d895927867\\XamlReader.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\..\\Users\\mgupt\\AppData\\Local\\Temp\\.vsdbgsrc\\aad6be2495d0a786b94b3514a5b6903407fe2d6a75ad7e505df6a9d895927867\\XamlReader.cs [Read Only]",
-              "ViewState": "AgIAAJ8BAAAAAAAAAADgv7UBAAACAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-05T18:04:14.72Z",
-              "EditorCaption": " [Read Only]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SetupView.xaml",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
+              "RelativeDocumentMoniker": "Views\\SetupView.xaml",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
+              "RelativeToolTip": "Views\\SetupView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-05T20:01:29.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ViewModelBase.cs",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\ViewModelBase.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ViewModelBase.cs",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\ViewModelBase.cs",
+              "RelativeToolTip": "ViewModels\\ViewModelBase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T20:24:25.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DummyConnectionService.cs",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Services\\DummyConnectionService.cs",
+              "RelativeDocumentMoniker": "Services\\DummyConnectionService.cs",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Services\\DummyConnectionService.cs",
+              "RelativeToolTip": "Services\\DummyConnectionService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAABBwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T20:25:37.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LightTheme.xaml",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Themes\\LightTheme.xaml",
+              "RelativeDocumentMoniker": "Themes\\LightTheme.xaml",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Themes\\LightTheme.xaml",
+              "RelativeToolTip": "Themes\\LightTheme.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-02-05T20:08:12.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SetupViewModel.cs",
+              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\SetupViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\SetupViewModel.cs",
+              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\ViewModels\\SetupViewModel.cs",
+              "RelativeToolTip": "ViewModels\\SetupViewModel.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAQwEwAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T20:02:53.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "DarkTheme.xaml",
               "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Themes\\DarkTheme.xaml",
               "RelativeDocumentMoniker": "Themes\\DarkTheme.xaml",
               "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Themes\\DarkTheme.xaml",
               "RelativeToolTip": "Themes\\DarkTheme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-05T17:57:19.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SetupView.xaml",
-              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
-              "RelativeDocumentMoniker": "Views\\SetupView.xaml",
-              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
-              "RelativeToolTip": "Views\\SetupView.xaml",
-              "ViewState": "AgIAACoAAAAAAAAAAADgv0AAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-05T17:47:17.658Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "4bfb22f7-1444-4810-a2d9-bd2dcc100d8c",
-        "Display": 1,
-        "X": -8,
-        "Y": 0,
-        "Width": 1616,
-        "Height": 868,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SetupView.xaml",
-              "DocumentMoniker": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
-              "RelativeDocumentMoniker": "Views\\SetupView.xaml",
-              "ToolTip": "C:\\WORK\\Samples\\mkmca2005\\MapperStudio\\Views\\SetupView.xaml",
-              "RelativeToolTip": "Views\\SetupView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-05T09:40:03.229Z",
+              "WhenOpened": "2026-02-05T20:08:36.449Z",
               "EditorCaption": ""
             }
           ]

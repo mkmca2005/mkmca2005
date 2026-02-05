@@ -394,5 +394,4 @@
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="8,2" />
     </Style>
-
-    <Style x:Key="StatusPillStyle" TargetType="Border
+</ResourceDictionary>
