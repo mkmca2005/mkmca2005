@@ -8,12 +8,4 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
-    private void TitleBar_OnMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
-        {
-            DragMove();
-        }
-    }
 }

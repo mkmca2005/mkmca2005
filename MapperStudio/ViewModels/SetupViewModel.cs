@@ -9,20 +9,9 @@ public sealed class SetupViewModel : ViewModelBase
     private readonly MainViewModel _mainViewModel;
     private string _mappingTitle = string.Empty;
     private string _description = string.Empty;
-    private string _selectedSourceConnectionType;
-    private string _selectedTargetConnectionType;
-    private string _sourceEndpointUrl = "https://api.enterprise.com/v1/users/schema";
-    private string _sourceBearerToken = "";
-    private string _sourceConnectionString = "";
-    private string _sourceTableName = "";
-    private string _sourceCsvPath = "";
-    private string _targetEndpointUrl = "";
-    private string _targetBearerToken = "";
-    private string _targetConnectionString = "";
-    private string _targetTableName = "";
-    private string _targetCsvPath = "";
-    private bool _isInbound = true;
-    private bool _isOutbound;
+    private string _selectedSourceSystem;
+    private string _selectedTargetSystem;
+    private string _selectedEntity;
     private bool _isSourceSchemaLoaded;
     private bool _isTargetSchemaLoaded;
     private string _sourceSchemaStatus = "Not loaded";
@@ -32,37 +21,11 @@ public sealed class SetupViewModel : ViewModelBase
     public SetupViewModel(MainViewModel mainViewModel)
     {
         _mainViewModel = mainViewModel;
-        ConnectionTypes = new ObservableCollection<string> { "REST API", "SQL Server", "CSV" };
-        _selectedSourceConnectionType = ConnectionTypes[0];
-        _selectedTargetConnectionType = ConnectionTypes[1];
-
-        SourceHeaders = new ObservableCollection<HeaderItem>
-        {
-            new("X-Tenant-ID", "US-PROD-01"),
-            new("X-Region", "US-EAST")
-        };
-
-        TargetHeaders = new ObservableCollection<HeaderItem>
-        {
-            new("X-Org-Id", "ACME"),
-            new("X-Env", "PROD")
-        };
-
-        SourceSchema = new ObservableCollection<SchemaNode>
-        {
-            new SchemaNode("user")
-            {
-                Children =
-                {
-                    new SchemaNode("id"),
-                    new SchemaNode("name"),
-                    new SchemaNode("email"),
-                    new SchemaNode("preferences"),
-                    new SchemaNode("timestamp")
-                }
-            }
-        };
-
+        SystemTypes = new ObservableCollection<string> { "SQL", "REST", "CSV" };
+        _selectedSourceSystem = SystemTypes[0];
+        _selectedTargetSystem = SystemTypes[1];
+        EntityOptions = new ObservableCollection<string> { "cr_contact_profile", "account", "contact" };
+        _selectedEntity = EntityOptions[0];
         TargetColumns = new ObservableCollection<TargetColumn>
         {
             new("ExternalId", "Guid", "*"),
@@ -75,36 +38,15 @@ public sealed class SetupViewModel : ViewModelBase
 
         LoadSourceSchemaCommand = new RelayCommand(_ => LoadSourceSchema());
         LoadTargetSchemaCommand = new RelayCommand(_ => LoadTargetSchema());
-        SaveDraftCommand = new RelayCommand(_ => SaveDraft());
-        _nextCommand = new RelayCommand(_ => _mainViewModel.CurrentView = _mainViewModel.MappingEditorViewModel, _ => CanProceed());
+        _nextCommand = new RelayCommand(_ => _mainViewModel.CurrentView = _mainViewModel.SchemaPreviewViewModel, _ => CanProceed());
         NextCommand = _nextCommand;
-
-        IsConnectionOnline = true;
-        ConnectionStatusText = "Online";
-        EnvironmentText = "US-PROD";
-        TargetSystemName = "Target: Microsoft Dataverse";
-        LastValidationTime = "Last validation: Today 14:02";
     }
 
-    public ObservableCollection<string> ConnectionTypes { get; }
+    public ObservableCollection<string> SystemTypes { get; }
 
-    public ObservableCollection<HeaderItem> SourceHeaders { get; }
-
-    public ObservableCollection<HeaderItem> TargetHeaders { get; }
-
-    public ObservableCollection<SchemaNode> SourceSchema { get; }
+    public ObservableCollection<string> EntityOptions { get; }
 
     public ObservableCollection<TargetColumn> TargetColumns { get; }
-
-    public string ConnectionStatusText { get; }
-
-    public string EnvironmentText { get; }
-
-    public string TargetSystemName { get; }
-
-    public string LastValidationTime { get; }
-
-    public bool IsConnectionOnline { get; }
 
     public string MappingTitle
     {
@@ -136,224 +78,47 @@ public sealed class SetupViewModel : ViewModelBase
         }
     }
 
-    public bool IsInbound
+    public string SelectedSourceSystem
     {
-        get => _isInbound;
+        get => _selectedSourceSystem;
         set
         {
-            if (_isInbound == value)
+            if (_selectedSourceSystem == value)
             {
                 return;
             }
 
-            _isInbound = value;
-            if (value)
-            {
-                _isOutbound = false;
-                OnPropertyChanged(nameof(IsOutbound));
-            }
-
+            _selectedSourceSystem = value;
             OnPropertyChanged();
         }
     }
 
-    public bool IsOutbound
+    public string SelectedTargetSystem
     {
-        get => _isOutbound;
+        get => _selectedTargetSystem;
         set
         {
-            if (_isOutbound == value)
+            if (_selectedTargetSystem == value)
             {
                 return;
             }
 
-            _isOutbound = value;
-            if (value)
-            {
-                _isInbound = false;
-                OnPropertyChanged(nameof(IsInbound));
-            }
-
+            _selectedTargetSystem = value;
             OnPropertyChanged();
         }
     }
 
-    public string SelectedSourceConnectionType
+    public string SelectedEntity
     {
-        get => _selectedSourceConnectionType;
+        get => _selectedEntity;
         set
         {
-            if (_selectedSourceConnectionType == value)
+            if (_selectedEntity == value)
             {
                 return;
             }
 
-            _selectedSourceConnectionType = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SelectedTargetConnectionType
-    {
-        get => _selectedTargetConnectionType;
-        set
-        {
-            if (_selectedTargetConnectionType == value)
-            {
-                return;
-            }
-
-            _selectedTargetConnectionType = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SourceEndpointUrl
-    {
-        get => _sourceEndpointUrl;
-        set
-        {
-            if (_sourceEndpointUrl == value)
-            {
-                return;
-            }
-
-            _sourceEndpointUrl = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SourceBearerToken
-    {
-        get => _sourceBearerToken;
-        set
-        {
-            if (_sourceBearerToken == value)
-            {
-                return;
-            }
-
-            _sourceBearerToken = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SourceConnectionString
-    {
-        get => _sourceConnectionString;
-        set
-        {
-            if (_sourceConnectionString == value)
-            {
-                return;
-            }
-
-            _sourceConnectionString = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SourceTableName
-    {
-        get => _sourceTableName;
-        set
-        {
-            if (_sourceTableName == value)
-            {
-                return;
-            }
-
-            _sourceTableName = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string SourceCsvPath
-    {
-        get => _sourceCsvPath;
-        set
-        {
-            if (_sourceCsvPath == value)
-            {
-                return;
-            }
-
-            _sourceCsvPath = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string TargetEndpointUrl
-    {
-        get => _targetEndpointUrl;
-        set
-        {
-            if (_targetEndpointUrl == value)
-            {
-                return;
-            }
-
-            _targetEndpointUrl = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string TargetBearerToken
-    {
-        get => _targetBearerToken;
-        set
-        {
-            if (_targetBearerToken == value)
-            {
-                return;
-            }
-
-            _targetBearerToken = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string TargetConnectionString
-    {
-        get => _targetConnectionString;
-        set
-        {
-            if (_targetConnectionString == value)
-            {
-                return;
-            }
-
-            _targetConnectionString = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string TargetTableName
-    {
-        get => _targetTableName;
-        set
-        {
-            if (_targetTableName == value)
-            {
-                return;
-            }
-
-            _targetTableName = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string TargetCsvPath
-    {
-        get => _targetCsvPath;
-        set
-        {
-            if (_targetCsvPath == value)
-            {
-                return;
-            }
-
-            _targetCsvPath = value;
+            _selectedEntity = value;
             OnPropertyChanged();
         }
     }
@@ -392,63 +157,21 @@ public sealed class SetupViewModel : ViewModelBase
 
     public ICommand LoadTargetSchemaCommand { get; }
 
-    public ICommand SaveDraftCommand { get; }
-
     public ICommand NextCommand { get; }
-
-    public bool IsSourceSchemaLoaded
-    {
-        get => _isSourceSchemaLoaded;
-        private set
-        {
-            if (_isSourceSchemaLoaded == value)
-            {
-                return;
-            }
-
-            _isSourceSchemaLoaded = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(CanProceed));
-        }
-    }
-
-    public bool IsTargetSchemaLoaded
-    {
-        get => _isTargetSchemaLoaded;
-        private set
-        {
-            if (_isTargetSchemaLoaded == value)
-            {
-                return;
-            }
-
-            _isTargetSchemaLoaded = value;
-            OnPropertyChanged();
-            OnPropertyChanged(nameof(CanProceed));
-        }
-    }
-
-    public bool CanProceed => _isSourceSchemaLoaded && _isTargetSchemaLoaded;
 
     private void LoadSourceSchema()
     {
-        IsSourceSchemaLoaded = true;
+        _isSourceSchemaLoaded = true;
         SourceSchemaStatus = "Loaded sample schema";
         _nextCommand.RaiseCanExecuteChanged();
     }
 
     private void LoadTargetSchema()
     {
-        IsTargetSchemaLoaded = true;
+        _isTargetSchemaLoaded = true;
         TargetSchemaStatus = "Loaded sample schema";
         _nextCommand.RaiseCanExecuteChanged();
     }
 
-    private void SaveDraft()
-    {
-    }
-
-    private bool CanProceed() => CanProceed;
+    private bool CanProceed() => _isSourceSchemaLoaded && _isTargetSchemaLoaded;
 }
-
-public sealed record HeaderItem(string Key, string Value);

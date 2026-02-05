@@ -55,21 +55,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                    <Border Width="36" Height="36" CornerRadius="8" Background="{StaticResource AccentBrush}" Margin="0,0,12,0">
-                        <Path Data="M8,10 L28,10 L28,26 L8,26 Z M12,14 L24,14 L24,22 L12,22 Z"
-                              Fill="{StaticResource AppBackgroundBrush}"
-                              Stretch="Uniform" />
-                    </Border>
-                    <TextBlock Text="Mapping Studio" Style="{StaticResource PageTitleTextStyle}" VerticalAlignment="Center" />
-                </StackPanel>
-                <TextBlock Text="Manage data integration mappings across systems" Style="{StaticResource PageSubtitleTextStyle}" />
+                <Image Source="/Resources/Images/MapperStudio.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 -20 0 0" Height="75" />
+
+                <TextBlock Text="Manage data integration mappings across systems" Style="{StaticResource PageSubtitleTextStyle}" Margin="0,6,0,0" />
             </StackPanel>
-            <Button Grid.Column="1"
-                    Height="28"
-                    Width="150"
+            <Button Grid.Column="1" Height="35" Width="150" VerticalAlignment="Bottom"
                     Content="Create Mapping"
-                    VerticalAlignment="Bottom"
                     Style="{StaticResource PrimaryButtonStyle}"
                     Command="{Binding CreateNewMappingCommand}"
                     Padding="16,10"
@@ -87,7 +78,7 @@
                 <Button Grid.Column="1" Content="Filters" Style="{StaticResource GhostButtonStyle}" Margin="12,0,0,0" />
             </Grid>
         </Border>
-        <Border Grid.Row="2">
+        <Border Grid.Row="2" >
             <DataGrid ItemsSource="{Binding Mappings}"
                       AutoGenerateColumns="False"
                       Style="{StaticResource DashboardDataGridStyle}"
