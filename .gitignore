@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MapperStudio/obj
+*.vsidx
+/MapperStudio/bin/Debug/net8.0-windows
+/MapperStudio/.vs/ProjectEvaluation
+/MapperStudio/.vs/MapperStudio/DesignTimeBuild

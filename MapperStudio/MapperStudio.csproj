@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\MapperStudio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\MapperStudio.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

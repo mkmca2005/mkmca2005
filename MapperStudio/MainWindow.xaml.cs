@@ -1,35 +1,33 @@
 using System.Windows;
+using System.Windows.Shell;
 
 namespace MapperStudio;
 
 public partial class MainWindow : Window
 {
-    private bool _isDarkTheme = true;
-
     public MainWindow()
     {
         InitializeComponent();
     }
+   
 
-    private void TitleBar_OnMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void imgAppLogo_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
-        {
-            DragMove();
-        }
+        DragMove();
     }
 
-    private void ThemeToggle_OnClick(object sender, RoutedEventArgs e)
+    private void btnClose_Click(object sender, RoutedEventArgs e)
     {
-        var appResources = Application.Current.Resources.MergedDictionaries;
-        if (appResources.Count == 0)
-        {
-            return;
-        }
+        Application.Current.Shutdown();
+    }
 
-        var themePath = _isDarkTheme ? "Themes/LightTheme.xaml" : "Themes/DarkTheme.xaml";
-        appResources[0] = new ResourceDictionary { Source = new Uri(themePath, UriKind.Relative) };
-        _isDarkTheme = !_isDarkTheme;
-        ThemeToggle.Content = _isDarkTheme ? "Light" : "Dark";
+    private void btnMaximize_Click(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState ==WindowState.Maximized? WindowState.Normal :WindowState.Maximized;
+    }
+
+    private void btnClose_Click_1(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 }
