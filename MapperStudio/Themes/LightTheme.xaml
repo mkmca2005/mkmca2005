@@ -300,18 +300,6 @@
         <Setter Property="Padding" Value="16" />
     </Style>
 
-    <Style x:Key="TagPillStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="8,2" />
-    </Style>
-
-    <Style x:Key="StatusPillStyle" TargetType="Border" BasedOn="{StaticResource TagPillStyle}">
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-    </Style>
-
     <Style TargetType="ComboBox">
         <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
@@ -399,49 +387,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="DataGrid">
+    <Style x:Key="TagPillStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="RowBackground" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="AlternatingRowBackground" Value="{StaticResource SurfaceBrush}" />
-        <Setter Property="GridLinesVisibility" Value="None" />
-        <Setter Property="HeadersVisibility" Value="Column" />
-        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="RowHeight" Value="40" />
-    </Style>
-
-    <Style x:Key="DashboardDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-        <Setter Property="RowHeight" Value="60" />
-        <Setter Property="HeadersVisibility" Value="Column" />
-    </Style>
-
-    <Style TargetType="DataGridColumnHeader">
-        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
-        <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Padding" Value="10,8" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="0,0,0,1" />
-    </Style>
-
-    <Style TargetType="TabControl">
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-    </Style>
-
-    <Style TargetType="TabItem">
-        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        <Setter Property="Padding" Value="12,6" />
-    </Style>
-
-    <Style TargetType="TreeView">
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="6" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="8,2" />
     </Style>
 </ResourceDictionary>

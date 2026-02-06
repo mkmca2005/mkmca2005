@@ -1,6 +1,5 @@
-using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Shell;
 
 namespace MapperStudio;
 
@@ -10,55 +9,25 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+   
 
-    private void TitleBar_OnMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    private void imgAppLogo_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
-        {
-            DragMove();
-        }
+        DragMove();
     }
 
-    private void ThemeButton_OnClick(object sender, RoutedEventArgs e)
+    private void btnClose_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button button || button.Tag is not string themeName)
-        {
-            return;
-        }
+        Application.Current.Shutdown();
+    }
 
-        var themePath = themeName switch
-        {
-            "Dark" => "Themes/DarkTheme.xaml",
-            "Light" => "Themes/LightTheme.xaml",
-            "Blue" => "Themes/BlueTheme.xaml",
-            _ => "Themes/DarkTheme.xaml"
-        };
+    private void btnMaximize_Click(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState ==WindowState.Maximized? WindowState.Normal :WindowState.Maximized;
+    }
 
-        var appResources = Application.Current.Resources.MergedDictionaries;
-        if (appResources.Count == 0)
-        {
-            return;
-        }
-
-        var index = -1;
-        for (var i = 0; i < appResources.Count; i++)
-        {
-            var source = appResources[i].Source?.OriginalString ?? string.Empty;
-            if (source.Contains("Themes/DarkTheme.xaml", StringComparison.OrdinalIgnoreCase) ||
-                source.Contains("Themes/LightTheme.xaml", StringComparison.OrdinalIgnoreCase) ||
-                source.Contains("Themes/BlueTheme.xaml", StringComparison.OrdinalIgnoreCase))
-            {
-                index = i;
-                break;
-            }
-        }
-
-        if (index == -1)
-        {
-            appResources.Add(new ResourceDictionary { Source = new Uri(themePath, UriKind.Relative) });
-            return;
-        }
-
-        appResources[index] = new ResourceDictionary { Source = new Uri(themePath, UriKind.Relative) };
+    private void btnClose_Click_1(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 }

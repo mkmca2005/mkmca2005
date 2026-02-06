@@ -38,41 +38,36 @@
     <SolidColorBrush x:Key="TagOrangeBrush" Color="{StaticResource TagOrangeColor}" />
     <SolidColorBrush x:Key="TagTealBrush" Color="{StaticResource TagTealColor}" />
 
-    <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#2F6BFF" Offset="0" />
-        <GradientStop Color="#5A92FF" Offset="1" />
-    </LinearGradientBrush>
-
     <Style x:Key="HeadingTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
     </Style>
 
     <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontSize" Value="22" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
     </Style>
 
     <Style x:Key="PageSubtitleTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="13" />
         <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
     </Style>
 
     <Style x:Key="SectionTitleTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
     </Style>
 
     <Style x:Key="SubtleTextStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
     </Style>
 
@@ -135,7 +130,7 @@
     </Style>
 
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource PrimaryGradientBrush}" />
+        <Setter Property="Background" Value="{StaticResource AccentBrush}" />
         <Setter Property="Foreground" Value="{StaticResource AppBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -228,7 +223,7 @@
 
     <Style x:Key="InputLabelStyle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
         <Setter Property="Margin" Value="0,0,0,6" />
@@ -241,7 +236,6 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="10,6" />
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="13" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -255,7 +249,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style TargetType="ComboBox">
+        <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="8,6" />
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+    </Style>
     <Style x:Key="WatermarkTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource BaseTextBoxStyle}">
         <Setter Property="Template">
             <Setter.Value>
@@ -291,7 +292,13 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    <Style x:Key="FooterBorderStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Padding" Value="1" />
+    </Style>
     <Style x:Key="CardBorderStyle" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
@@ -312,92 +319,7 @@
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
     </Style>
 
-    <Style TargetType="ComboBox">
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="8,6" />
-        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
-        <Setter Property="FontSize" Value="13" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ComboBox">
-                    <Grid>
-                        <Border x:Name="Border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6">
-                            <Grid Margin="8,4">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="20" />
-                                </Grid.ColumnDefinitions>
-                                <ContentPresenter VerticalAlignment="Center" />
-                                <Path Grid.Column="1"
-                                      Data="M0,0 L6,6 L12,0"
-                                      Stroke="{StaticResource SubtleForegroundBrush}"
-                                      StrokeThickness="2"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center" />
-                            </Grid>
-                        </Border>
-                        <Popup x:Name="Popup"
-                               Placement="Bottom"
-                               IsOpen="{TemplateBinding IsDropDownOpen}"
-                               AllowsTransparency="True"
-                               PopupAnimation="Fade">
-                            <Border Background="{StaticResource SurfaceBrush}"
-                                    BorderBrush="{StaticResource BorderBrush}"
-                                    BorderThickness="1"
-                                    CornerRadius="6"
-                                    Padding="4">
-                                <ScrollViewer>
-                                    <ItemsPresenter />
-                                </ScrollViewer>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource AccentBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="ItemContainerStyle">
-            <Setter.Value>
-                <Style TargetType="ComboBoxItem">
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
-                    <Setter Property="Padding" Value="8,6" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="ComboBoxItem">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                                    <ContentPresenter />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsHighlighted" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
-                                    </Trigger>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource AccentBrush}" />
-                                        <Setter Property="Foreground" Value="{StaticResource AppBackgroundBrush}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    
 
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
@@ -413,7 +335,7 @@
     </Style>
 
     <Style x:Key="DashboardDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-        <Setter Property="RowHeight" Value="60" />
+        <Setter Property="RowHeight" Value="70" />
         <Setter Property="HeadersVisibility" Value="Column" />
     </Style>
 

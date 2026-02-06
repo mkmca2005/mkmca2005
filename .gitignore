@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MapperStudio/obj
+*.vsidx
+/MapperStudio/bin/Debug/net8.0-windows
+/MapperStudio/.vs/ProjectEvaluation
+/MapperStudio/.vs/MapperStudio/DesignTimeBuild
+/MapperStudio/.vs/MapperStudio/CopilotIndices/18.0.988.22099
+/MapperStudio/.vs/MapperStudio/v18/.suo
+/MapperStudio/.vs/MapperStudio/v18/DocumentLayout.json
+/MapperStudio/.vs/MapperStudio/v18/DocumentLayout.backup.json
