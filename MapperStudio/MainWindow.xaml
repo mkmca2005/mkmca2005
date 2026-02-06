@@ -15,31 +15,33 @@
     </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="73">                
-            </RowDefinition>
+            <RowDefinition   Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition  Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200">
-                    
-                </ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel MouseLeftButtonDown="imgAppLogo_MouseLeftButtonDown" HorizontalAlignment="Left" Width="800">
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" MouseLeftButtonDown="imgAppLogo_MouseLeftButtonDown" >
             <Image Name="imgAppLogo" Source="/Resources/Images/MapperStudio.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 0 0 0" Height="75" />
             <TextBlock Text="Manage data integration mappings across systems" Style="{StaticResource PageSubtitleTextStyle}" Margin="0,6,0,0" />
-
         </StackPanel>
 
-        <StackPanel Width="130" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel  Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Name="btnClose" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnClose_Click_1">-</Button>
             <Button Name="btnMaximize" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnMaximize_Click">&#x1F5D6;</Button>
             <Button Name="btnMinimize" BorderThickness="0" Width="30" HorizontalAlignment="Right" Margin="5 5 5 5" Foreground="White" Height="30" Background="Transparent" Click="btnClose_Click">X</Button>
         </StackPanel>
-        
-        <ContentControl Grid.Row="2" Content="{Binding CurrentView}" Margin="20 10 20 20" />
+
+        <ContentControl Grid.Row="1" Grid.ColumnSpan="3" Content="{Binding CurrentView}" Margin="20 10 20 20" />
+
+       
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" >
+            <RibbonSeparator BorderThickness="1" Height="70" Width="1400" Foreground="Blue" Background="Blue" BorderBrush="Black"  ></RibbonSeparator>
+            <!--<Border Width="1400" Style="{StaticResource FooterBorderStyle }" Margin="-1"></Border>-->
+        </StackPanel>
     </Grid>
 </Window>
