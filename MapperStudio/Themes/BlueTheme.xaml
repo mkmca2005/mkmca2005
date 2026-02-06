@@ -2,15 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <FontFamily x:Key="AppFontFamily">Segoe UI</FontFamily>
 
-    <Color x:Key="AppBackgroundColor">#F5F7FB</Color>
-    <Color x:Key="SurfaceColor">#FFFFFF</Color>
-    <Color x:Key="SurfaceAltColor">#EEF2F7</Color>
-    <Color x:Key="SurfaceDeepColor">#E3E9F2</Color>
-    <Color x:Key="AccentColor">#2F6BFF</Color>
-    <Color x:Key="AccentHoverColor">#5A92FF</Color>
-    <Color x:Key="BorderColor">#CCD6E4</Color>
-    <Color x:Key="ForegroundColor">#1B2430</Color>
-    <Color x:Key="SubtleForegroundColor">#5D6B7C</Color>
+    <Color x:Key="AppBackgroundColor">#0F131A</Color>
+    <Color x:Key="SurfaceColor">#151B24</Color>
+    <Color x:Key="SurfaceAltColor">#1B2430</Color>
+    <Color x:Key="SurfaceDeepColor">#0F1726</Color>
+    <Color x:Key="AccentColor">#1E88E5</Color>
+    <Color x:Key="AccentHoverColor">#42A5F5</Color>
+    <Color x:Key="BorderColor">#273243</Color>
+    <Color x:Key="ForegroundColor">#E6EDF7</Color>
+    <Color x:Key="SubtleForegroundColor">#9AA8BA</Color>
     <Color x:Key="SuccessColor">#2BB673</Color>
     <Color x:Key="WarningColor">#E0A800</Color>
     <Color x:Key="ErrorColor">#E05A5A</Color>
@@ -39,8 +39,8 @@
     <SolidColorBrush x:Key="TagTealBrush" Color="{StaticResource TagTealColor}" />
 
     <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#2F6BFF" Offset="0" />
-        <GradientStop Color="#5A92FF" Offset="1" />
+        <GradientStop Color="#1E88E5" Offset="0" />
+        <GradientStop Color="#42A5F5" Offset="1" />
     </LinearGradientBrush>
 
     <Style x:Key="HeadingTextStyle" TargetType="TextBlock">
@@ -300,6 +300,18 @@
         <Setter Property="Padding" Value="16" />
     </Style>
 
+    <Style x:Key="TagPillStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="8,2" />
+    </Style>
+
+    <Style x:Key="StatusPillStyle" TargetType="Border" BasedOn="{StaticResource TagPillStyle}">
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+    </Style>
+
     <Style TargetType="ComboBox">
         <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
@@ -387,11 +399,49 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TagPillStyle" TargetType="Border">
+    <Style TargetType="DataGrid">
         <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="8,2" />
+        <Setter Property="RowBackground" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="GridLinesVisibility" Value="None" />
+        <Setter Property="HeadersVisibility" Value="Column" />
+        <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
+        <Setter Property="RowHeight" Value="40" />
+    </Style>
+
+    <Style x:Key="DashboardDataGridStyle" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="RowHeight" Value="60" />
+        <Setter Property="HeadersVisibility" Value="Column" />
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource SubtleForegroundBrush}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Padding" Value="10,8" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+
+    <Style TargetType="TabControl">
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
+    </Style>
+
+    <Style TargetType="TabItem">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
+        <Setter Property="Padding" Value="12,6" />
+    </Style>
+
+    <Style TargetType="TreeView">
+        <Setter Property="Background" Value="{StaticResource SurfaceAltBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource AppForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="6" />
     </Style>
 </ResourceDictionary>
